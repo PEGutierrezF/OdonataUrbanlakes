@@ -45,7 +45,7 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
 # Site names
   plot <- ggplot(data, aes_string(x=x, y=y)) + 
                  geom_text(aes(label=obsnames), size=3.5, color='gray20',
-                           vjust = -1.5) +
+                           vjust = -1.2, hjust = -0.1) +
     geom_point(aes(colour = obsnames),size=5) +
     scale_color_manual(values=c("#4575b4", "#4575b4", #Catie
                                 "#313695","#313695", # DA
@@ -86,7 +86,7 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
 Fig <- PCbiplot(Urbanpools)
 Fig
 
-ggsave("Figure 1.jpeg",Fig, width = 200, height = 220, units = "mm")
+ggsave("Figure 1.jpeg", Fig, width = 200, height = 220, units = "mm")
 
 
 References
