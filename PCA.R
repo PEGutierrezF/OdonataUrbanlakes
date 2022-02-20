@@ -3,8 +3,6 @@
 
 ### http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/112-pca-principal-component-analysis-essentials/
 
-setwd("D:/Curriculum/18_ Estudiantes/Estudiantes/2017 Jareth Roman/Statistical Analisys")
-
 library(factoextra)
 library(ggplot2)
 
@@ -28,6 +26,14 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
                  geom_text(aes(label=obsnames), size=3.5, color='gray20',
                            vjust = -1.5) +
     geom_point(aes(colour = obsnames),size=5) +
+    scale_color_manual(values=c("#4575b4", "#4575b4", #Catie
+                                "#313695","#313695", # DA
+                                "#d73027","#d73027", #ER
+                                "#003c30","#003c30", # LAN
+                                "#9970ab","#9970ab", # LP
+                                "#7fbc41","#7fbc41" # LS
+                                )) +
+    
     labs(x= "PC1 (40.1%)", y = "PC2 (28.9%)") # Modifica con tus datos
 # Intercepts  
   plot <- plot + geom_hline(yintercept=0, size=.2,linetype="dashed") + 
@@ -56,5 +62,7 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   plot
 }
 
-PCbiplot(Urbanpools)
+Fig <- PCbiplot(Urbanpools)
 
+ggsave("Figure 1.jpeg",Fig, width = 200, height = 220, units = "mm")
+getwd()
