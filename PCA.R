@@ -36,15 +36,24 @@ fviz_pca_biplot(Urbanpools,
 
 # Plot Function  ----------------------------------------------------------
 
+# New names physicochemical var.
 physico.names <- c("TempAgua" = "Temperature", "O2" = "pH", 
-                "pH" = "Dis.Oxyg.","Conduct"="Conductivity") # New names physicochemical var.
+                "pH" = "Dis.Oxyg.","Conduct"="Conductivity") 
+
+# New Site names
+site.names <- c("CAT_Dryt"= "Catie D", "CAT_Wet" = "Catie W",
+                "DA_Dry" = "Doña Ana D", "DA_Wet"= "Doña Ana W",
+                "ER_Dry" = "El Rodeo D" , "ER_Wet"= "El Rodeo W",
+                "LP_Dry" = "La Paz D","LP_Wet"= "La Paz W",
+                "LS_Dry" = "Sabana D", "LS_Wet"="Sabana W",
+                "LAN_Dry"= "Lankester D","LAN_Wet"= "Lankester W")
 
 PCbiplot <- function(PC, x="PC1", y="PC2") {
   # PC being a prcomp object
   data <- data.frame(obsnames=row.names(PC$x), PC$x)
 # Site names
   plot <- ggplot(data, aes_string(x=x, y=y)) + 
-                 geom_text(aes(label=obsnames), size=3.5, color='gray20',
+                 geom_text(aes(label=site.names), size=3.5, color='gray20',
                            vjust = -1.2, hjust = -0.1) +
     geom_point(aes(colour = obsnames),size=5) +
     scale_color_manual(values=c("#4575b4", "#4575b4", #Catie
@@ -66,7 +75,7 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   datapc <- transform(datapc,v1 = .7 * mult * (get(x)),
                              v2 = .7 * mult * (get(y)))
 # Coordinates & loading names 
-  plot <- plot + coord_equal() + ylim(-2,2) + xlim(-2.3,2) +
+  plot <- plot + coord_equal() + ylim(-2,2) + xlim(-2.3,2.3) +
     geom_text(data=datapc, aes(x=v1, y=v2, label=physico.names), #varnames
               size = 6, vjust=-0.5, color="black")
 # Arrows  
