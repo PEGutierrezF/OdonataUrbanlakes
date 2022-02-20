@@ -1,12 +1,21 @@
 
 
 
-### http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/112-pca-principal-component-analysis-essentials/
+
+# ---------------------------------------------
+# Plot PCA
+# 20 Feb 2022
+# Pablo E. Gutiérrez-Fonseca
+# pabloe.gutierrezfonseca@gmail.com
+# ---------------------------------------------
+#  
+
+
 
 library(factoextra)
 library(ggplot2)
 
-FQ.frm=read.csv("PCAPhysico.csv",header=T, row.names=1)
+FQ.frm=read.csv("data/PCAPhysico.csv",header=T, row.names=1)
 attach(FQ.frm)
 FQ.frm
 
@@ -15,8 +24,11 @@ summary(Urbanpools)
 
 biplot(Urbanpools)
 
-mynewnames <- c("TempAgua" = "Temperature", "O2" = "pH", 
-                "pH" = "Dis.Oxyg.","Conduct"="Conductivity")
+
+# Plot Function  ----------------------------------------------------------
+
+physico.names <- c("TempAgua" = "Temperature", "O2" = "pH", 
+                "pH" = "Dis.Oxyg.","Conduct"="Conductivity") # New names physicochemical var.
 
 PCbiplot <- function(PC, x="PC1", y="PC2") {
   # PC being a prcomp object
@@ -46,7 +58,7 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
                              v2 = .7 * mult * (get(y)))
 # Coordinates & loading names 
   plot <- plot + coord_equal() + ylim(-2,2) + xlim(-2.3,2) +
-    geom_text(data=datapc, aes(x=v1, y=v2, label=mynewnames), #varnames
+    geom_text(data=datapc, aes(x=v1, y=v2, label=physico.names), #varnames
               size = 6, vjust=-0.5, color="black")
 # Arrows  
   plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2), 
@@ -63,6 +75,12 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
 }
 
 Fig <- PCbiplot(Urbanpools)
+Fig
 
 ggsave("Figure 1.jpeg",Fig, width = 200, height = 220, units = "mm")
-getwd()
+
+
+References
+
+# http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/112-pca-principal-component-analysis-essentials/
+# https://stackoverflow.com/questions/6578355/plotting-pca-biplot-with-ggplot2
