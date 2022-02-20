@@ -86,7 +86,8 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
 Fig <- PCbiplot(Urbanpools)
 Fig
 
-ggsave("Figure 1.jpeg", Fig, width = 200, height = 220, units = "mm")
+fig2 <- biplot(Urbanpools)
+ggsave("Figure 2.jpeg", fig2, width = 200, height = 220, units = "mm")
 
 
 References
