@@ -22,8 +22,17 @@ FQ.frm
 Urbanpools <- prcomp(FQ.frm, scale = TRUE, center=T)
 summary(Urbanpools)
 
-biplot(Urbanpools)
+res.var <- get_pca_var(Urbanpools)
+res.var$coord          # Coordinates
 
+res.ind <- get_pca_ind(Urbanpools)
+res.ind$coord          # Coordinates
+
+fviz_pca_biplot(Urbanpools,
+                repel = TRUE,
+                col.var = "#2E9FDF", # Variables color
+                col.ind = "#696969"  # Individuals color
+)
 
 # Plot Function  ----------------------------------------------------------
 
