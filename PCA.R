@@ -20,7 +20,7 @@ rm(list = ls())
 library(factoextra)
 library(ggplot2)
 
-FQ.frm=read.csv("data/PCAPhysico.csv",header=T, row.names=1)
+FQ.frm=read.csv("data/PCAPhysico.csv", header=T, row.names=1)
 attach(FQ.frm)
 FQ.frm
 
