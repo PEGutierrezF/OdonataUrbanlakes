@@ -42,8 +42,8 @@ fviz_pca_biplot(Urbanpools,
 # Plot Function  ----------------------------------------------------------
 
 # New names physicochemical var.
-physico.names <- c("TempAgua" = "Temperature", "O2" = "pH", 
-                   "pH" = "Dis.Oxyg.","Conduct"="Conductivity") 
+physico.names <- c("TempAgua" = "Temperature", "pH" = "pH", 
+                   "O2 " = "Dis.Oxyg.","Conduct"="Conductivity") 
 
 # New Site names
 site.names <- c("CAT_Dryt"= "Catie D", "CAT_Wet" = "Catie W",
@@ -97,7 +97,7 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   plot
 }
 
-Fig <- PCbiplot(Urbanpools)
+PCbiplot(Urbanpools)
 Fig
 
 ggsave("Figure 1.jpeg", Fig, width = 200, height = 220, units = "mm")
